@@ -1,4 +1,4 @@
-name: Aoede Main FLow
+name: Aoede Main Flow
 
 on:
   pull_request:
@@ -29,10 +29,10 @@ jobs:
           node-version: '16'
       
       - name: Install dependencies
-        run: npm install
+        run: make install
 
       - name: Build Production
-        run: npm run build
+        run: make build
 
   unit-tests:
 
@@ -58,10 +58,10 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies from cache
-        run: npm install
+        run: make install
 
       - name: Run Tests
-        run: npm run test:unit
+        run: make test-unit
 
   cypress-tests:
     runs-on: ubuntu-latest
