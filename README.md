@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+## Intro
+
+### Why Aoede name
+
+**Geeky stuff now**
+
+Aoede, according to Greek mythology, she was the daughter of Zeus, the King of the Gods, and Mnemosyne, the goddess of memory.
+
+She was the muse of voice and song. Since this is a blog(ish) demo, why not give it a codename that fits.
+
+<small>[Aoede](https://en.wikipedia.org/wiki/Aoede_(mythology))</small>
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -12,15 +25,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test:unit` to execute the unit tests via [jest](https://jestjs.io/). Thanks to [Jest Preset Angular](https://github.com/thymikee/jest-preset-angular) which allow us to setup jest easaly
 
-## Running end-to-end tests
+## Running integration tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `npm run test:e2e` to execute the integration tests. Integration tests will run with [Cypress](https://www.cypress.io/).
 
 ## Further help
 
