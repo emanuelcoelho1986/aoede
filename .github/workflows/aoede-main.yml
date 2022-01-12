@@ -8,6 +8,7 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
 
     steps:
       - uses: actions/checkout@v2
@@ -38,6 +39,7 @@ jobs:
 
     runs-on: ubuntu-20.04
     needs: build
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
 
     steps:
       - uses: actions/checkout@v2
@@ -67,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     container: cypress/browsers:node16.13.0-chrome95-ff94
     needs: build
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
 
     steps:
       - name: Checkout Code
