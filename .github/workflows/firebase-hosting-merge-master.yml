@@ -17,6 +17,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AOEDE_938a1 }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AOEDE_DEV }}'
           channelId: live
-          projectId: aoede-938a1
+          projectId: aoede-dev
