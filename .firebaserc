@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "aoede-dev",
+    "production": "aoede-938-a1"
+  }
+}
