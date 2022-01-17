@@ -1,7 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {BehaviorSubject, Subject, take, takeUntil, tap} from "rxjs";
-import {Post} from "./blog/model/post";
-import {PostService} from "./blog/services/post/post.service";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
@@ -9,28 +8,14 @@ import {PostService} from "./blog/services/post/post.service";
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'aoede';
-  posts: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([])
+export class AppComponent implements OnInit {
 
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  title = 'Aeode - Muse of voice and Song';
 
-  constructor(private postsService: PostService) { }
+  constructor(private titleService: Title) { }
 
-  ngOnInit(): void {
-    this.postsService.getAll()
-      .pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe(
-        (posts) => this.posts.next(posts)
-      )
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
 
-  ngOnDestroy() {
-    // An automated way to destroy observables
-    // We need to "take them until" we destroy it
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }

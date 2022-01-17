@@ -103,7 +103,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
+          build: make build
           start: npm start
   
   build_and_deploy:
