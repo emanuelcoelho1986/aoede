@@ -2,7 +2,7 @@ export interface Post {
   id: Number;
   title: String;
   author: String;
-  publishDate: Date;
+  publish_date: String;
   slug: String;
   description: String;
   content: String;
