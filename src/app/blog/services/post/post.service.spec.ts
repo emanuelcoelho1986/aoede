@@ -52,7 +52,7 @@ describe('PostService', () => {
   it(`calling get with ID 1 should return only one post`, (done) => {
     const postId = 1;
     // we know the first post has ID 0
-    const postWithIdOne = POSTS[0]
+    const postWithIdOne = POSTS[0];
 
     service.getPost(postId).subscribe({
       next: (post) => {
