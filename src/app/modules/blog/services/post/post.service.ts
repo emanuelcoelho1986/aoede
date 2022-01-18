@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ApiEndpoints} from "../../enum/Api.endpoints.enum";
 import {Observable} from "rxjs";
 import {Post as BlogPost} from "../../model/post";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import {CommentService} from "./comment.service";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 import {ApiEndpoints} from "../../enum/Api.endpoints.enum";
 import {COMMENTS} from "../../tests/Comments.mock";
 import {Comment} from "../../model/comment";
