@@ -4,12 +4,16 @@ import { HttpClientModule } from "@angular/common/http";
 
 import SERVICES from './services';
 
+const MODULES = [
+  CommonModule,
+
+  HttpClientModule
+];
+
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-
-    HttpClientModule
+    ...MODULES
   ],
   providers: [
     ...SERVICES
