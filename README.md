@@ -14,6 +14,19 @@ She was the muse of voice and song. Since this is a blog(ish) demo, why not give
 
 <small>[Aoede](https://en.wikipedia.org/wiki/Aoede_(mythology))</small>
 
+***
+
+## Getting started
+
+The project contains all submodules required to run in development mode (locally).
+
+Run the following command
+
+`make install && make dev`
+
+***
+
+*Angular generated Readme.md*
 
 ## Development server
 
