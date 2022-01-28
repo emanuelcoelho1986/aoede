@@ -1,0 +1,12 @@
+<mat-card class="blog-item-card">
+  <mat-card-title>{{blogPost?.title}}</mat-card-title>
+  <mat-card-subtitle>{{blogPost?.publish_date}}</mat-card-subtitle>
+  <mat-card-content>
+    {{blogPost?.content}}
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
