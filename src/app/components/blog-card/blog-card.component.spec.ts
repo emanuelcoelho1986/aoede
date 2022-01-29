@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlogCardComponent } from './blog-card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
+import {SafePipe} from "../../pipes/safe.pipe";
 
 describe('BlogCardComponent', () => {
   let component: BlogCardComponent;
@@ -14,7 +15,7 @@ describe('BlogCardComponent', () => {
         MatCardModule,
         MatDividerModule
       ],
-      declarations: [ BlogCardComponent ]
+      declarations: [ BlogCardComponent, SafePipe ]
     })
     .compileComponents();
   });
