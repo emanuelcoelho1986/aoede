@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Post} from "../../modules/blog/model/post";
+import {SafeTypeEnum} from "../../pipes/safe.pipe";
 
 @Component({
   selector: 'app-blog-card',
@@ -8,4 +9,6 @@ import {Post} from "../../modules/blog/model/post";
 })
 export class BlogCardComponent {
   @Input() blogPost: Post | undefined;
+
+  safeTypeEnum = SafeTypeEnum;
 }

@@ -4,3 +4,4 @@
 - Continue working in Blog Card
   - Sort cards
   - Possible sortable options for blog posts
+- Create SafePit to escape HTML
