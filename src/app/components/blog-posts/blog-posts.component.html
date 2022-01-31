@@ -1,0 +1,7 @@
+<div class="blog-posts-container">
+  <ul class="posts-list">
+    <li *ngFor="let post of posts | async; trackBy: trackedBy" class="post-item">
+      <app-blog-card [blogPost]="post"></app-blog-card>
+    </li>
+  </ul>
+</div>

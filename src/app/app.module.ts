@@ -9,6 +9,9 @@ import {BlogCardComponent} from "./components/blog-card/blog-card.component";
 import {SafePipe} from './pipes/safe.pipe';
 import {CardCommentsComponent} from './components/card-comments/card-comments.component';
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +19,14 @@ import { PageLoadingComponent } from './components/page-loading/page-loading.com
     AppComponent,
     BlogCardComponent,
 
+    CardCommentsComponent,
+    PageLoadingComponent,
+    NotFoundComponent,
+    BlogPostsComponent,
+
     /* Pipes */
     SafePipe,
-    CardCommentsComponent,
-    PageLoadingComponent
+
   ],
   imports: [
     BrowserModule,
