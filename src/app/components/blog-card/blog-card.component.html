@@ -1,11 +1,11 @@
-<mat-card class="blog-item-card">
-  <mat-card-title>{{blogPost?.title}}</mat-card-title>
-  <mat-card-subtitle>{{blogPost?.publish_date}}</mat-card-subtitle>
-
-  <mat-card-content [innerHTML]="blogPost?.content | safe: safeTypeEnum.HTML"></mat-card-content>
-
-  <mat-divider inset></mat-divider>
-  <mat-card-actions>
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">{{blogPost?.title}}</h1>
+    <h3 class="card-subtitle">{{blogPost?.publish_date}}</h3>
+  </div>
+  <h4 class="card-author">{{blogPost?.author}}</h4>
+  <div class="card-content" [innerHTML]="blogPost?.content | safe: safeTypeEnum.HTML"></div>
+  <div class="card-actions">
     <app-card-comments [blogPost]="blogPost"></app-card-comments>
-  </mat-card-actions>
-</mat-card>
+  </div>
+</div>

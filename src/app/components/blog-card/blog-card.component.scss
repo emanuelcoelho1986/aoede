@@ -1,7 +1,11 @@
-/**
- * In our case, we don't need the -8px set by Angular Material.
- * Our actions are a bit different
- */
-.mat-card-actions {
-  margin: 0;
+.card {
+  padding: 1rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+  }
+
 }
