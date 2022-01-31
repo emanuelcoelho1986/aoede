@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {BlogModule} from "./modules/blog/blog.module";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {PageLoadingComponent} from "./components/page-loading/page-loading.component";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
         BlogModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        PageLoadingComponent
       ],
     }).compileComponents();
   });
