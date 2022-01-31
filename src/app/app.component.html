@@ -1,8 +1,4 @@
 <div class="blog-posts-container">
-
-  <!-- Loading -->
-  <mat-progress-bar mode="indeterminate" *ngIf="loading$ | async"></mat-progress-bar>
-
   <ul class="posts-list">
     <li *ngFor="let post of posts | async; trackBy: trackedBy" class="post-item">
       <app-blog-card [blogPost]="post"></app-blog-card>

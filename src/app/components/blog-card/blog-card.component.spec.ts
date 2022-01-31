@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogCardComponent } from './blog-card.component';
-import {MatCardModule} from "@angular/material/card";
-import {MatDividerModule} from "@angular/material/divider";
 import {SafePipe} from "../../pipes/safe.pipe";
-import {CardCommentsComponent} from "../card-comments/card-comments.component";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {CardCommentsComponent} from "../card-comments/card-comments.component";
 
 describe('BlogCardComponent', () => {
   let component: BlogCardComponent;
@@ -14,9 +12,6 @@ describe('BlogCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatCardModule,
-        MatDividerModule,
-
         HttpClientTestingModule
       ],
       declarations: [
