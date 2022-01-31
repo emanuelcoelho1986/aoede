@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BlogCardComponent} from "./components/blog-card/blog-card.component";
 import {SafePipe} from './pipes/safe.pipe';
 import {CardCommentsComponent} from './components/card-comments/card-comments.component';
+import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {CardCommentsComponent} from './components/card-comments/card-comments.co
 
     /* Pipes */
     SafePipe,
-    CardCommentsComponent
+    CardCommentsComponent,
+    PageLoadingComponent
   ],
   imports: [
     BrowserModule,

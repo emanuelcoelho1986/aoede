@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import {BehaviorSubject, Subject, takeUntil, tap} from "rxjs";
+import {BehaviorSubject, delay, Subject, takeUntil, tap} from "rxjs";
 import {Post} from "./modules/blog/model/post";
 import {BlogPostsService} from "./services/blog-posts.service";
 
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.blogPostsService.getBlogPosts()
       .pipe(
         takeUntil(this.destroy$),
+        delay(1000),
         tap(() => this.loading$.next(false))
       )
       .subscribe((posts) => this.posts.next(posts))
