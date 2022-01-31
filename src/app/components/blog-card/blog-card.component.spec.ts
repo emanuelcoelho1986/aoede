@@ -4,6 +4,8 @@ import { BlogCardComponent } from './blog-card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import {SafePipe} from "../../pipes/safe.pipe";
+import {CardCommentsComponent} from "../card-comments/card-comments.component";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('BlogCardComponent', () => {
   let component: BlogCardComponent;
@@ -13,9 +15,15 @@ describe('BlogCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatCardModule,
-        MatDividerModule
+        MatDividerModule,
+
+        HttpClientTestingModule
       ],
-      declarations: [ BlogCardComponent, SafePipe ]
+      declarations: [
+        BlogCardComponent,
+        CardCommentsComponent,
+        SafePipe
+      ]
     })
     .compileComponents();
   });
