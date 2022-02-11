@@ -4,8 +4,30 @@ import {NotFoundComponent} from "../components/not-found/not-found.component";
 import {BlogPostsComponent} from "../components/blog-posts/blog-posts.component";
 
 const routes: Routes = [
-  { path: 'posts', component: BlogPostsComponent },
+  {
+    path: 'posts',
+    component: BlogPostsComponent,
+    // Maybe I could leave the navigation to details as children,
+    // but I'll go with a != one
+    /*
+    children: [
+      {
+        path: ':id/:slug'
+      }
+    ]
+    */
+  },
+  // Feels like reddit this way
+  {
+    path: 'p/:slug',
+    component: BlogPostsComponent
+  },
+
+  // Posts are the default route
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
+
+  // Well... a not found courtesy of our WebDeveloper fellas and codepen
+  // the main author is in not-found folder component as a comment
   { path: '**', component: NotFoundComponent },
 ];
 
