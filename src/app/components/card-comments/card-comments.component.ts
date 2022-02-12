@@ -15,9 +15,8 @@ export enum CommentsAmountStateEnum {
  *
  * 1 - Contains the number of comments as link
  * 2 - Show the first 2 comments
- * 3 - If has more than 2 comments will have a view more because we might have replied from replies
+ * 3 - If it has more than 2 comments will have a view more because we might have replied from replies
  */
-
 @Component({
   selector: 'app-card-comments',
   templateUrl: './card-comments.component.html',

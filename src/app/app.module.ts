@@ -11,6 +11,7 @@ import {CardCommentsComponent} from './components/card-comments/card-comments.co
 import { PageLoadingComponent } from './components/page-loading/page-loading.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
+import { BlogPostComponent } from './components/blog-post/blog-post.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
     PageLoadingComponent,
     NotFoundComponent,
     BlogPostsComponent,
+    BlogPostComponent,
 
     /* Pipes */
     SafePipe,

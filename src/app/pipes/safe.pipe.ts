@@ -19,7 +19,7 @@ export class SafePipe implements PipeTransform {
 
   constructor(protected sanitizer: DomSanitizer) {}
 
-  public transform(value: any, type: SafeTypeEnum): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
+  public transform(value: any, type: SafeTypeEnum = SafeTypeEnum.HTML): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
     switch (type) {
       case SafeTypeEnum.HTML: return this.sanitizer.bypassSecurityTrustHtml(value);
       case SafeTypeEnum.STYLE: return this.sanitizer.bypassSecurityTrustStyle(value);

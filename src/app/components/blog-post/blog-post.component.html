@@ -1,1 +1,7 @@
-<p>blog-post works!</p>
+<div class="blog-post-container">
+  <h1>{{(blogPost$ | async)?.title}}</h1>
+  <h2>{{(blogPost$ | async)?.publish_date}}</h2>
+  <h3>{{(blogPost$ | async)?.author}}</h3>
+
+  <div class="card-content" [innerHTML]="(blogPost$ | async)?.content | safe"></div>
+</div>
