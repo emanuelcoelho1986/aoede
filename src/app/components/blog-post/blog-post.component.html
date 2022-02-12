@@ -1,7 +1,11 @@
 <div class="blog-post-container">
-  <h1>{{(blogPost$ | async)?.title}}</h1>
-  <h2>{{(blogPost$ | async)?.publish_date}}</h2>
-  <h3>{{(blogPost$ | async)?.author}}</h3>
+  <div class="blog-post-details">
+    <h1>{{(blogPost$ | async)?.title}}</h1>
+    <h2>{{(blogPost$ | async)?.publish_date}}</h2>
+    <h4>{{(blogPost$ | async)?.author}}</h4>
 
-  <div class="card-content" [innerHTML]="(blogPost$ | async)?.content | safe"></div>
+    <div class="card-content" [innerHTML]="(blogPost$ | async)?.content | safe"></div>
+  </div>
+  <div class="divider"></div>
+  <div class="blog-post-comments"></div>
 </div>

@@ -28,7 +28,6 @@ import { BlogPostComponent } from './components/blog-post/blog-post.component';
 
     /* Pipes */
     SafePipe,
-
   ],
   imports: [
     BrowserModule,
