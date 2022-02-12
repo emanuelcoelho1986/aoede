@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "../components/not-found/not-found.component";
 import {BlogPostsComponent} from "../components/blog-posts/blog-posts.component";
+import {BlogPostResolver} from "../resolvers/blog-post-resolver.service";
+import {BlogPostComponent} from "../components/blog-post/blog-post.component";
 
 const routes: Routes = [
   {
@@ -19,8 +21,11 @@ const routes: Routes = [
   },
   // Feels like reddit this way
   {
-    path: 'p/:slug',
-    component: BlogPostsComponent
+    path: 'p/:slug/:id',
+    component: BlogPostComponent,
+    resolve: {
+      blogPost: BlogPostResolver
+    }
   },
 
   // Posts are the default route
