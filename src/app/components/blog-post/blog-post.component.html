@@ -7,5 +7,7 @@
     <div class="card-content" [innerHTML]="(blogPost$ | async)?.content | safe"></div>
   </div>
   <div class="divider"></div>
-  <div class="blog-post-comments"></div>
+  <div class="blog-post-comments">
+    <app-card-comments [blogPost]="(blogPost$ | async) || undefined"></app-card-comments>
+  </div>
 </div>

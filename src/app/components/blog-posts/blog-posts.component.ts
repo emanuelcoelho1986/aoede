@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, Subject, takeUntil, tap} from "rxjs";
 import {Post} from "../../modules/blog/model/post";
-import {Title} from "@angular/platform-browser";
 import {BlogPostsService} from "../../services/blog-posts.service";
 
 @Component({

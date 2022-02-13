@@ -8,10 +8,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BlogCardComponent} from "./components/blog-card/blog-card.component";
 import {SafePipe} from './pipes/safe.pipe';
 import {CardCommentsComponent} from './components/card-comments/card-comments.component';
-import { PageLoadingComponent } from './components/page-loading/page-loading.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
-import { BlogPostComponent } from './components/blog-post/blog-post.component';
+import {PageLoadingComponent} from './components/page-loading/page-loading.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {BlogPostsComponent} from './components/blog-posts/blog-posts.component';
+import {BlogPostComponent} from './components/blog-post/blog-post.component';
+import {NumberOfCommentsComponent} from './components/number-of-comments/number-of-comments.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { BlogPostComponent } from './components/blog-post/blog-post.component';
 
     /* Pipes */
     SafePipe,
+    NumberOfCommentsComponent,
   ],
   imports: [
     BrowserModule,

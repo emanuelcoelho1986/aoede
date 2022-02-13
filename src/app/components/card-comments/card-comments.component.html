@@ -1,11 +1,12 @@
 <div class="comments-preview-container">
   <ng-container [ngSwitch]="numberOfCommentsState | async">
-    <span class="number-of-comments" *ngSwitchCase="commentsAmountStateEnum.SINGLE">{{(comments$ | async)?.length}} comment</span>
-    <span class="number-of-comments" *ngSwitchCase="commentsAmountStateEnum.MULTIPLE">{{(comments$ | async)?.length}} comments</span>
-    <span class="number-of-comments" *ngSwitchDefault>0 comments</span>
+    <div class="comments-list-container" *ngSwitchCase="commentsAmountStateEnum.NONE"></div>
+    <div class="number-of-comments" *ngSwitchDefault>
+      <ul>
+        <li *ngFor="let comment of (comments$ | async)">
+          <pre>{{comment | json}}</pre>
+        </li>
+      </ul>
+    </div>
   </ng-container>
-
-  <a href="" *ngIf="(numberOfCommentsState | async) === commentsAmountStateEnum.MULTIPLE" class="text-center">
-    View More
-  </a>
 </div>
