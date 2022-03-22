@@ -16,5 +16,5 @@ export interface Comment {
   content: String;
 
   // We might have replies
-  comments: Comment[] | null;
+  comments: Comment[];
 }

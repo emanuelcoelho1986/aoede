@@ -1,0 +1,4 @@
+<div class="comment-container">
+  <small>{{comment?.user}} on the {{comment?.date}}</small>
+  <p [innerHTML]="comment?.content | safe"></p>
+</div>

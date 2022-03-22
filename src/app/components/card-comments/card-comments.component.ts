@@ -18,9 +18,24 @@ import {map} from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCommentsComponent extends NumberOfCommentsComponent {
+  private static childrenOf(comments: Comment[], comment: Comment) {
+    return comments.filter(needle => needle.parent_id === comment.id);
+  }
+
   get mappedComments$(): Observable<Comment[]> {
     return this.comments$.pipe(
-      map((comments) => comments.filter(comment => comment.parent_id === null))
+      // I think I can do the all recursive thing in a single map with the help of
+      // other RxJS
+      map((comments) => {
+        const parentComments = comments.filter(comment => comment.parent_id === null);
+
+        parentComments.forEach((comment) => {
+          comment.comments = [];
+          comment.comments.push(...CardCommentsComponent.childrenOf(comments, comment));
+        });
+
+        return parentComments;
+      })
     )
   }
 }

@@ -3,8 +3,13 @@
     <div class="comments-list-container" *ngSwitchCase="commentsAmountStateEnum.NONE"></div>
     <div class="number-of-comments" *ngSwitchDefault>
       <ul>
-        <li *ngFor="let comment of (comments$ | async)">
-          <pre>{{comment | json}}</pre>
+        <li *ngFor="let comment of (mappedComments$ | async)">
+          <app-card-comment [comment]="comment"></app-card-comment>
+          <ul *ngIf="comment.comments.length">
+            <li *ngFor="let childComment of comment.comments">
+              <app-card-comment [comment]="childComment"></app-card-comment>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
