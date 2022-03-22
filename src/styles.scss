@@ -8,11 +8,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin: 0 auto;
 }
 
-ul {
-  list-style: none;
-  border-left: 1px solid black;
-}
-
 .text-center {
   text-align: center;
 }
@@ -20,4 +15,14 @@ ul {
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
+}
+
+
+// General padding for ULs for alignment purposes
+ul {
+  padding: 2rem;
+
+  li:last-of-type {
+    margin-top: 1rem;
+  }
 }

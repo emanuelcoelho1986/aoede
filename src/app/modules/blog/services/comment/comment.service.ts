@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ApiEndpoints} from "../../enum/Api.endpoints.enum";
 import {Observable} from "rxjs";
@@ -10,7 +10,8 @@ import {Comment} from "../../model/comment";
 })
 export class CommentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getCommentsFromPost(withId: Number): Observable<Comment[]> {
     const endpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', withId.toString(10))}`;

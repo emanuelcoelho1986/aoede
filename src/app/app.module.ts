@@ -13,7 +13,8 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BlogPostsComponent} from './components/blog-posts/blog-posts.component';
 import {BlogPostComponent} from './components/blog-post/blog-post.component';
 import {NumberOfCommentsComponent} from './components/number-of-comments/number-of-comments.component';
-import { CardCommentComponent } from './components/card-comment/card-comment.component';
+import {CardCommentComponent} from './components/card-comment/card-comment.component';
+import {CardCommentActionsComponent} from './components/card-comment-actions/card-comment-actions.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { CardCommentComponent } from './components/card-comment/card-comment.com
     SafePipe,
     NumberOfCommentsComponent,
     CardCommentComponent,
+    CardCommentActionsComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,20 +23,25 @@ export class NumberOfCommentsComponent implements OnInit {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   destroy$ = new Subject<boolean>();
 
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService) {
+  }
+
+  get notLoading(): boolean {
+    return !this.loading$.value;
+  }
 
   ngOnInit(): void {
     // I'm betting there is a better way to deal with this kind of things
     // I'll dig into it later. I'm not sure the Input complain about undefined
     // was something I had to handle in the past
-    if(!this.blogPost) return;
+    if (!this.blogPost) return;
 
     this.commentService.getCommentsFromPost(this.blogPost.id)
       .pipe(
         takeUntil(this.destroy$),
-        tap(()=>this.loading$.next(false)),
+        tap(() => this.loading$.next(false)),
         tap((comments) => {
-          if(comments.length === 1) {
+          if (comments.length === 1) {
             this.numberOfCommentsState.next(CommentsAmountStateEnum.SINGLE);
           } else if (comments.length > 1) {
             this.numberOfCommentsState.next(CommentsAmountStateEnum.MULTIPLE);
@@ -44,7 +49,6 @@ export class NumberOfCommentsComponent implements OnInit {
         }),
       )
       .subscribe((comments) => {
-        console.log('Comments from: ', this.blogPost?.id, comments);
         this.comments$.next(comments);
       })
   }
@@ -56,10 +60,6 @@ export class NumberOfCommentsComponent implements OnInit {
 
   trackByComment(index: Number, comment: Comment): Number {
     return comment.id || index;
-  }
-
-  get notLoading(): boolean {
-    return !this.loading$.value;
   }
 
 }

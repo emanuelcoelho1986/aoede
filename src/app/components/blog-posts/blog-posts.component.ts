@@ -16,7 +16,8 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   loading$ = new BehaviorSubject(false);
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private blogPostsService: BlogPostsService) { }
+  constructor(private blogPostsService: BlogPostsService) {
+  }
 
   ngOnInit() {
     this.loading$.next(true);

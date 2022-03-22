@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CardCommentComponent } from './card-comment.component';
+import {CardCommentComponent} from './card-comment.component';
+import {SafePipe} from "../../pipes/safe.pipe";
+import {CardCommentActionsComponent} from "../card-comment-actions/card-comment-actions.component";
 
 describe('CardCommentComponent', () => {
   let component: CardCommentComponent;
@@ -8,9 +10,13 @@ describe('CardCommentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardCommentComponent ]
+      declarations: [
+        SafePipe,
+        CardCommentComponent,
+        CardCommentActionsComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

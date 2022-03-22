@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
 
   title = 'Aeode - Muse of voice and Song';
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+  }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);

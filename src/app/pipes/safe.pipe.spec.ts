@@ -41,7 +41,7 @@ describe('SafePipe', () => {
   it('expect each type of value to return a different type of instance', () => {
     // expected types
     //  SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl
-    const myTestValues: {value: string, safeType: SafeTypeEnum}[] = [
+    const myTestValues: { value: string, safeType: SafeTypeEnum }[] = [
       {
         safeType: SafeTypeEnum.HTML,
         value: '<p>test</p>'

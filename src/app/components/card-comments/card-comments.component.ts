@@ -18,24 +18,42 @@ import {map} from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCommentsComponent extends NumberOfCommentsComponent {
-  private static childrenOf(comments: Comment[], comment: Comment) {
-    return comments.filter(needle => needle.parent_id === comment.id);
-  }
 
   get mappedComments$(): Observable<Comment[]> {
     return this.comments$.pipe(
-      // I think I can do the all recursive thing in a single map with the help of
-      // other RxJS
-      map((comments) => {
-        const parentComments = comments.filter(comment => comment.parent_id === null);
-
-        parentComments.forEach((comment) => {
-          comment.comments = [];
-          comment.comments.push(...CardCommentsComponent.childrenOf(comments, comment));
-        });
-
-        return parentComments;
-      })
+      // map and transform to Comment Tree
+      map((comments) => this.createCommentTree(comments))
     )
+  }
+
+  /**
+   * Generate the comment tree
+   * @param comments
+   * @param parentId
+   * @private
+   */
+  private createCommentTree(comments: Comment[], parentId: Number | null = null): Comment[] {
+    // Since we have a flat structure in the beginning I can just map them to make it easy to get
+    // the comments tree
+    const commentsMap = new Map(comments.map((comment) => [comment.id, comment]));
+    const commentsTree: Comment[] = [];
+
+    commentsMap.forEach((comment) => {
+      // Init the comments array on each comment
+      comment.comments = [];
+
+      if (comment.parent_id) {
+        const parentComment = commentsMap.get(comment.parent_id);
+
+        if (parentComment) {
+          // I assume that all nodes have already a property children
+          parentComment.comments.push(comment);
+        }
+      } else {
+        commentsTree.push(comment);
+      }
+    });
+
+    return commentsTree;
   }
 }

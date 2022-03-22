@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BlogPostsComponent } from './blog-posts.component';
+import {BlogPostsComponent} from './blog-posts.component';
 import {BlogModule} from "../../modules/blog/blog.module";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {PostService} from "../../modules/blog/services/post/post.service";
@@ -16,10 +16,10 @@ describe('BlogPostsComponent', () => {
 
         HttpClientTestingModule
       ],
-      declarations: [ BlogPostsComponent ],
-      providers: [ PostService ]
+      declarations: [BlogPostsComponent],
+      providers: [PostService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

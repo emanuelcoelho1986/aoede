@@ -14,10 +14,11 @@ export class BlogPostComponent implements OnInit, OnDestroy {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    (this.route.data as Observable<{blogPost: Post}>)
+    (this.route.data as Observable<{ blogPost: Post }>)
       .pipe(
         takeUntil(this.destroy$)
       )

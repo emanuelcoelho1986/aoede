@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ApiEndpoints} from "../../enum/Api.endpoints.enum";
 import {Observable} from "rxjs";
@@ -10,7 +10,8 @@ import {environment} from "../../../../../environments/environment";
 })
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllPosts(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(`${environment.apiUrl}${ApiEndpoints.POSTS}`);

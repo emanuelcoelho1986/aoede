@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NumberOfCommentsComponent } from './number-of-comments.component';
+import {NumberOfCommentsComponent} from './number-of-comments.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('NumberOfCommentsComponent', () => {
   let component: NumberOfCommentsComponent;
@@ -8,9 +9,9 @@ describe('NumberOfCommentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NumberOfCommentsComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [NumberOfCommentsComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
