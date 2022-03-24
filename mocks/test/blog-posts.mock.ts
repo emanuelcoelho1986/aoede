@@ -8,7 +8,7 @@ export const BlogPostsMock: Post[] = [
     id: 0,
     publish_date: "2022-01-01 00:00:00",
     slug: "post-0",
-    title: "Lorem Ipsum"
+    title: "Lorem Ipsum",
   },
   {
     author: "Jane Doe",
