@@ -15,8 +15,7 @@ describe('CardCommentComponent', () => {
         CardCommentComponent,
         CardCommentActionsComponent
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

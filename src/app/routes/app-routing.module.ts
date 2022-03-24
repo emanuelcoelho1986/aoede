@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from "../components/not-found/not-found.component";
-import {BlogPostsComponent} from "../components/blog-posts/blog-posts.component";
+import {BlogCardsComponent} from "../components/blog-cards/blog-cards.component";
 import {BlogPostResolver} from "../resolvers/blog-post-resolver.service";
 import {BlogPostComponent} from "../components/blog-post/blog-post.component";
 
 const routes: Routes = [
   {
     path: 'posts',
-    component: BlogPostsComponent,
+    component: BlogCardsComponent,
     // Maybe I could leave the navigation to details as children,
     // but I'll go with a != one
     /*

@@ -10,7 +10,7 @@ import {SafePipe} from './pipes/safe.pipe';
 import {CardCommentsComponent} from './components/card-comments/card-comments.component';
 import {PageLoadingComponent} from './components/page-loading/page-loading.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {BlogPostsComponent} from './components/blog-posts/blog-posts.component';
+import {BlogCardsComponent} from './components/blog-cards/blog-cards.component';
 import {BlogPostComponent} from './components/blog-post/blog-post.component';
 import {NumberOfCommentsComponent} from './components/number-of-comments/number-of-comments.component';
 import {CardCommentComponent} from './components/card-comment/card-comment.component';
@@ -26,7 +26,7 @@ import {CardCommentActionsComponent} from './components/card-comment-actions/car
     CardCommentsComponent,
     PageLoadingComponent,
     NotFoundComponent,
-    BlogPostsComponent,
+    BlogCardsComponent,
     BlogPostComponent,
 
     /* Pipes */

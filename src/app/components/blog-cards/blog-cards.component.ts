@@ -4,20 +4,19 @@ import {Post} from "../../modules/blog/model/post";
 import {BlogPostsService} from "../../services/blog-posts.service";
 
 @Component({
-  selector: 'app-blog-posts',
-  templateUrl: './blog-posts.component.html',
-  styleUrls: ['./blog-posts.component.scss'],
+  selector: 'app-blog-cards',
+  templateUrl: './blog-cards.component.html',
+  styleUrls: ['./blog-cards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogPostsComponent implements OnInit, OnDestroy {
+export class BlogCardsComponent implements OnInit, OnDestroy {
 
   posts: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
 
   loading$ = new BehaviorSubject(false);
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private blogPostsService: BlogPostsService) {
-  }
+  constructor(private blogPostsService: BlogPostsService) {}
 
   ngOnInit() {
     this.loading$.next(true);
