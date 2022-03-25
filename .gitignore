@@ -1016,4 +1016,4 @@ node_modules/
 .env
 
 # sugmodules
-api
+api/*
