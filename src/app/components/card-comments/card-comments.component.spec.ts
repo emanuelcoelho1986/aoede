@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CardCommentsComponent } from './card-comments.component';
+import {CardCommentsComponent} from './card-comments.component';
 import {CommentService} from "../../modules/blog/services/comment/comment.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
@@ -10,11 +10,11 @@ describe('CardCommentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      declarations: [ CardCommentsComponent ],
-      providers: [ CommentService ]
+      imports: [HttpClientTestingModule],
+      declarations: [CardCommentsComponent],
+      providers: [CommentService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

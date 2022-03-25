@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 /**
  * Thanks to: https://loading.io/css/
@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
   templateUrl: './page-loading.component.html',
   styleUrls: ['./page-loading.component.scss']
 })
-export class PageLoadingComponent {}
+export class PageLoadingComponent {
+}

@@ -1,0 +1,16 @@
+<div class="comment-container">
+  <small>
+    <strong>{{comment?.user}} on the {{comment?.date}}</strong>
+  </small>
+  <p [innerHTML]="comment?.content | safe"></p>
+
+  <div class="actions-container">
+    <app-card-comment-actions></app-card-comment-actions>
+  </div>
+
+  <ul *ngIf="hasComments">
+    <li *ngFor="let childComment of comments">
+      <app-card-comment [comment]="childComment"></app-card-comment>
+    </li>
+  </ul>
+</div>

@@ -8,9 +8,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BlogCardComponent} from "./components/blog-card/blog-card.component";
 import {SafePipe} from './pipes/safe.pipe';
 import {CardCommentsComponent} from './components/card-comments/card-comments.component';
-import { PageLoadingComponent } from './components/page-loading/page-loading.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
+import {PageLoadingComponent} from './components/page-loading/page-loading.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {BlogCardsComponent} from './components/blog-cards/blog-cards.component';
+import {BlogPostComponent} from './components/blog-post/blog-post.component';
+import {NumberOfCommentsComponent} from './components/number-of-comments/number-of-comments.component';
+import {CardCommentComponent} from './components/card-comment/card-comment.component';
+import {CardCommentActionsComponent} from './components/card-comment-actions/card-comment-actions.component';
 
 
 @NgModule({
@@ -22,11 +26,14 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
     CardCommentsComponent,
     PageLoadingComponent,
     NotFoundComponent,
-    BlogPostsComponent,
+    BlogCardsComponent,
+    BlogPostComponent,
 
     /* Pipes */
     SafePipe,
-
+    NumberOfCommentsComponent,
+    CardCommentComponent,
+    CardCommentActionsComponent,
   ],
   imports: [
     BrowserModule,

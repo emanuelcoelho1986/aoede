@@ -1,0 +1,11 @@
+ul {
+  list-style: none;
+
+  &:not(:first-child) {
+    border-left: 1px solid black;
+  }
+}
+
+.actions-container {
+  margin: 0 0 1rem;
+}

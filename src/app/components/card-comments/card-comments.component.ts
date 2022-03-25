@@ -1,79 +1,59 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Post} from "../../modules/blog/model/post";
-import {CommentService} from "../../modules/blog/services/comment/comment.service";
-import {BehaviorSubject, Subject, takeUntil, tap} from "rxjs";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {NumberOfCommentsComponent} from "../number-of-comments/number-of-comments.component";
+import {Observable} from "rxjs";
 import {Comment} from "../../modules/blog/model/comment";
-
-export enum CommentsAmountStateEnum {
-  NONE,
-  SINGLE,
-  MULTIPLE
-}
+import {map} from "rxjs/operators";
 
 /**
  * I'm seeing this one being the following:
  *
  * 1 - Contains the number of comments as link
  * 2 - Show the first 2 comments
- * 3 - If has more than 2 comments will have a view more because we might have replied from replies
+ * 3 - If it has more than 2 comments will have a view more because we might have replied from replies
  */
-
 @Component({
   selector: 'app-card-comments',
   templateUrl: './card-comments.component.html',
   styleUrls: ['./card-comments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardCommentsComponent implements OnInit, OnDestroy {
+export class CardCommentsComponent extends NumberOfCommentsComponent {
 
-  @Input() blogPost: Post | undefined;
-
-  // Comments related
-  commentsAmountStateEnum = CommentsAmountStateEnum;
-  numberOfCommentsState: BehaviorSubject<CommentsAmountStateEnum> = new BehaviorSubject<CommentsAmountStateEnum>(CommentsAmountStateEnum.NONE);
-  comments$: BehaviorSubject<Comment[]> = new BehaviorSubject<any[]>([]);
-
-  // To destroy all observables on destroy
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  destroy$ = new Subject<boolean>();
-
-  constructor(private commentService: CommentService) { }
-
-  ngOnInit(): void {
-    // I'm betting there is a better way to deal with this kind of things
-    // I'll dig into it later. I'm not sure the Input complain about undefined
-    // was something I had to handle in the past
-    if(!this.blogPost) return;
-
-    this.commentService.getCommentsFromPost(this.blogPost.id)
-      .pipe(
-        takeUntil(this.destroy$),
-        tap(()=>this.loading$.next(false)),
-        tap((comments) => {
-          if(comments.length === 1) {
-            this.numberOfCommentsState.next(CommentsAmountStateEnum.SINGLE);
-          } else if (comments.length > 1) {
-            this.numberOfCommentsState.next(CommentsAmountStateEnum.MULTIPLE);
-          }
-        }),
-      )
-      .subscribe((comments) => {
-        console.log('Comments from: ', this.blogPost?.id, comments);
-        this.comments$.next(comments);
-      })
+  get mappedComments$(): Observable<Comment[]> {
+    return this.comments$.pipe(
+      // map and transform to Comment Tree
+      map((comments) => this.createCommentTree(comments))
+    )
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
+  /**
+   * Generate the comment tree
+   * @param comments
+   * @param parentId
+   * @private
+   */
+  private createCommentTree(comments: Comment[], parentId: Number | null = null): Comment[] {
+    // Since we have a flat structure in the beginning I can just map them to make it easy to get
+    // the comments tree
+    const commentsMap = new Map(comments.map((comment) => [comment.id, comment]));
+    const commentsTree: Comment[] = [];
 
-  trackByComment(index: Number, comment: Comment): Number {
-    return comment.id || index;
-  }
+    commentsMap.forEach((comment) => {
+      // Init the comments array on each comment
+      comment.comments = [];
 
-  get notLoading(): boolean {
-    return !this.loading$.value;
-  }
+      if (comment.parent_id) {
+        const parentComment = commentsMap.get(comment.parent_id);
 
+        if (parentComment) {
+          // I assume that all nodes have already a property children
+          parentComment.comments.push(comment);
+        }
+      } else {
+        commentsTree.push(comment);
+      }
+    });
+
+    return commentsTree;
+  }
 }

@@ -1,7 +1,7 @@
-import { PostService } from "./post/post.service";
+import {PostService} from "./post/post.service";
 
 const SERVICES = [
-    PostService
+  PostService
 ]
 
 export default SERVICES;

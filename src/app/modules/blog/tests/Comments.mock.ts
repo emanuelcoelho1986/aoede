@@ -1,6 +1,6 @@
 import {Comment} from "../model/comment";
 
-export const COMMENTS: Partial<Comment>[] =  [{
+export const COMMENTS: Partial<Comment>[] = [{
   "id": 1,
   "post_id": 1,
   "parent_id": null,

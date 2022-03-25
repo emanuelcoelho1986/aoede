@@ -1,8 +1,8 @@
-import { compareAsc, parseISO } from 'date-fns'
+import {compareAsc, parseISO} from 'date-fns'
 
-import { Injectable } from '@angular/core';
-import { PostService } from "../modules/blog/services/post/post.service";
-import { map } from 'rxjs/operators'
+import {Injectable} from '@angular/core';
+import {PostService} from "../modules/blog/services/post/post.service";
+import {map} from 'rxjs/operators'
 import {SortByEnum} from "../enums/sort-by.enum";
 
 @Injectable({
@@ -10,7 +10,8 @@ import {SortByEnum} from "../enums/sort-by.enum";
 })
 export class BlogPostsService {
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService) {
+  }
 
   // I'll ignore the parameter for now but this is how I would handle sorting
   // Use an enum, create an external handler for sorting and handle the sort based on the enum value

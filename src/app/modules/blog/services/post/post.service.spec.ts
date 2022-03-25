@@ -1,11 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PostService } from './post.service';
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { POSTS } from "../../tests/Posts.mocks";
-import { environment } from "../../../../../environments/environment";
-import { ApiEndpoints } from "../../enum/Api.endpoints.enum";
-import {Post} from "../../model/post";
+import {PostService} from './post.service';
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {POSTS} from "../../tests/Posts.mocks";
+import {environment} from "../../../../../environments/environment";
+import {ApiEndpoints} from "../../enum/Api.endpoints.enum";
 
 describe('PostService', () => {
   let httpTestingController: HttpTestingController;

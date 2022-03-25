@@ -1,0 +1,13 @@
+<div class="blog-post-container">
+  <div class="blog-post-details">
+    <h1>{{(blogPost$ | async)?.title}}</h1>
+    <h2>{{(blogPost$ | async)?.publish_date}}</h2>
+    <h4>{{(blogPost$ | async)?.author}}</h4>
+
+    <div [innerHTML]="(blogPost$ | async)?.content | safe" class="card-content"></div>
+  </div>
+  <div class="divider"></div>
+  <div class="blog-post-comments">
+    <app-card-comments [blogPost]="(blogPost$ | async) || undefined"></app-card-comments>
+  </div>
+</div>
