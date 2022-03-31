@@ -1,0 +1,13 @@
+<div class="comment-form-container">
+  <form (ngSubmit)="didPressSubmitButton()" [formGroup]="commentFormGroup">
+    <input formControlName="author" type="text" placeholder="Author"  required/>
+    <textarea formControlName="comment" placeholder="What do you wanna say?" cdkTextareaAutosize="true" rows="4" required></textarea>
+
+    <div class="comment-form-actions">
+      <button *ngIf="!shouldHideCancelButton" (click)="didPressCancelButton($event)">Cancel</button>
+      <button type="submit" [disabled]="shouldDisableSubmitButton">
+        <span>Submit</span>
+      </button>
+    </div>
+  </form>
+</div>
