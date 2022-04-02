@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {IFormComment} from "../../models/IFormComment";
 
 @Component({
   selector: 'app-comment-form',
@@ -20,7 +21,7 @@ export class CommentFormComponent {
   })
 
   @Output()
-  onSubmitForm: EventEmitter<{author: string, comment: string}> = new EventEmitter<{author: string, comment: string}>();
+  onSubmitForm: EventEmitter<IFormComment> = new EventEmitter<IFormComment>();
 
   @Output()
   onCancelForm: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -30,8 +31,7 @@ export class CommentFormComponent {
   }
 
   get shouldDisableCancelButton(): boolean {
-    return Object.values(this.commentFormGroup.controls)
-      .map(formControl => formControl.value)
+    return Object.values(this.commentFormGroup.getRawValue() as IFormComment)
       .reduce(value => value.toString().trim())
       .length === 0 && !this.commentFormGroup.touched;
   }
@@ -44,7 +44,18 @@ export class CommentFormComponent {
     return this.commentFormGroup.get('comment');
   }
 
-  didPressSubmitButton() {
+  /**
+   * Rest comment form
+   * Can be called using ViewChild if we need to
+   */
+  resetForm(): void {
+    this.commentFormGroup.reset();
+  }
+
+  /**
+   * Will submit form content with value of type: IFormComment
+   */
+  didPressSubmitButton(): void {
     if(this.commentFormGroup.valid) {
       this.onSubmitForm.emit(this.commentFormGroup.value);
     }
@@ -62,7 +73,7 @@ export class CommentFormComponent {
     if(evt.preventDefault) evt.preventDefault();
     if(evt.stopPropagation) evt.stopPropagation();
 
-    this.commentFormGroup.reset();
+    this.resetForm();
 
     this.onCancelForm.emit(true);
   }
