@@ -8,6 +8,8 @@ import {CardCommentsComponent} from "../card-comments/card-comments.component";
 import {of} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {BlogPostsMock} from "../../../../mocks/test/blog-posts.mock";
+import {CommentFormComponent} from "../comment-form/comment-form.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 describe('BlogPostComponent', () => {
   const blogPostMock = BlogPostsMock[0];
@@ -23,12 +25,15 @@ describe('BlogPostComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [
         SafePipe,
         BlogPostComponent,
-        CardCommentsComponent
+        CardCommentsComponent,
+        CommentFormComponent
       ],
       providers: [
         { provide: ActivatedRoute, useClass: stubRoute }

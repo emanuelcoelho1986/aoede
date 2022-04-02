@@ -1,0 +1,58 @@
+.comment-form-container form {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-flow: column;
+
+  input {
+
+    &.ng-invalid.ng-touched {
+      border: 1px solid red;
+    }
+  }
+
+  textarea {
+    @extend input;
+
+    margin: 0.5rem 0 0;
+  }
+
+  .error-container {
+    margin: 0 0 1rem;
+
+    color: red;
+  }
+
+  .comment-form-actions {
+    align-self: flex-end;
+
+    button {
+      border: 1px solid transparent; /* Will void screen moving because of 1px border */
+      color: black;
+      background-color: transparent;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      transition-duration: 0.2s;
+      cursor: pointer;
+
+      padding: 0.3rem;
+
+      &:not(:last-of-type) {
+        margin: 0.5rem;
+      }
+
+      // Adjust in case we don't want the cancel button to be displayed
+      &:last-of-type {
+        margin: 0.5rem 0;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

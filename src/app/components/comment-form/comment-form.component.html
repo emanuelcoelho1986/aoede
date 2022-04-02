@@ -1,0 +1,32 @@
+<div class="comment-form-container">
+  <form data-test-comment-form
+        [formGroup]="commentFormGroup"
+        (ngSubmit)="didPressSubmitButton()" >
+    <input formControlName="author" type="text" placeholder="Author" required/>
+    <!-- Form Error can be moved to a separate component to avoid code duplication -->
+    <!-- Would receive an Input of AbstractControl and an Enum of error to check -->
+    <div data-test-author-input-errors
+         class="error-container"
+         *ngIf="authorFormControl?.touched && !authorFormControl?.valid">
+      <small *ngIf="authorFormControl?.hasError('required')">Author name is required</small>
+    </div>
+    <textarea formControlName="comment" placeholder="What do you wanna say?" cdkTextareaAutosize="true" rows="4" required></textarea>
+    <div data-test-author-input-errors
+         class="error-container"
+         *ngIf="commentFormControl?.touched && !commentFormControl?.valid">
+      <small *ngIf="commentFormControl?.hasError('required')">Comment is required</small>
+    </div>
+
+    <div class="comment-form-actions">
+      <button data-test-cancel-button
+              *ngIf="!shouldHideCancelButton"
+              [disabled]="shouldDisableCancelButton"
+              (click)="didPressCancelButton($event)">Cancel</button>
+      <button data-test-submit-button
+              type="submit"
+              [disabled]="shouldDisableSubmitButton">
+        <span>Submit</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -15,7 +15,9 @@ import {BlogPostComponent} from './components/blog-post/blog-post.component';
 import {NumberOfCommentsComponent} from './components/number-of-comments/number-of-comments.component';
 import {CardCommentComponent} from './components/card-comment/card-comment.component';
 import {CardCommentActionsComponent} from './components/card-comment-actions/card-comment-actions.component';
-
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TextFieldModule} from "@angular/cdk/text-field";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {CardCommentActionsComponent} from './components/card-comment-actions/car
     NumberOfCommentsComponent,
     CardCommentComponent,
     CardCommentActionsComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ import {CardCommentActionsComponent} from './components/card-comment-actions/car
 
     BlogModule,
 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    TextFieldModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
