@@ -4,7 +4,6 @@
   flex-flow: column;
 
   input {
-    margin: 0 0 0.5rem;
 
     &.ng-invalid.ng-touched {
       border: 1px solid red;
@@ -14,8 +13,13 @@
   textarea {
     @extend input;
 
-    // Overrides input styles
-    margin: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .error-container {
+    margin: 0 0 1rem;
+
+    color: red;
   }
 
   .comment-form-actions {
@@ -35,6 +39,11 @@
 
       &:not(:last-of-type) {
         margin: 0.5rem;
+      }
+
+      // Adjust in case we don't want the cancel button to be displayed
+      &:last-of-type {
+        margin: 0.5rem 0;
       }
 
       &:hover {

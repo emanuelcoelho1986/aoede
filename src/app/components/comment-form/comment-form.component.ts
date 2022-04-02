@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-comment-form',
@@ -25,6 +25,24 @@ export class CommentFormComponent {
   @Output()
   onCancelForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  get shouldDisableSubmitButton(): boolean {
+    return !this.commentFormGroup.valid;
+  }
+
+  get shouldDisableCancelButton(): boolean {
+    return Object.values(this.commentFormGroup.controls)
+      .map(formControl => formControl.value)
+      .reduce(value => value.toString().trim())
+      .length === 0 && !this.commentFormGroup.touched;
+  }
+
+  get authorFormControl(): AbstractControl | null {
+    return this.commentFormGroup.get('author');
+  }
+
+  get commentFormControl(): AbstractControl | null {
+    return this.commentFormGroup.get('comment');
+  }
 
   didPressSubmitButton() {
     if(this.commentFormGroup.valid) {
@@ -32,16 +50,20 @@ export class CommentFormComponent {
     }
   }
 
+  /**
+   * When user presses cancel button
+   * The Cancel button is only active if the form has something.
+   * Will clean the form. We could use a confirmation modal or alert to confirm if the
+   * user really wants to clear the form
+   * @param evt Event
+   */
   didPressCancelButton(evt: Event) {
     // I'm not sure if we can remove the if nowadays. Muscle empty from my past
     if(evt.preventDefault) evt.preventDefault();
     if(evt.stopPropagation) evt.stopPropagation();
 
     this.commentFormGroup.reset();
-    this.onCancelForm.emit(true);
-  }
 
-  get shouldDisableSubmitButton(): boolean {
-    return !this.commentFormGroup.valid;
+    this.onCancelForm.emit(true);
   }
 }

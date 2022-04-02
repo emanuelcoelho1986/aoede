@@ -19,7 +19,6 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextFieldModule} from "@angular/cdk/text-field";
 
-
 @NgModule({
   declarations: [
     /* Components */
@@ -37,7 +36,7 @@ import {TextFieldModule} from "@angular/cdk/text-field";
     NumberOfCommentsComponent,
     CardCommentComponent,
     CardCommentActionsComponent,
-    CommentFormComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,
