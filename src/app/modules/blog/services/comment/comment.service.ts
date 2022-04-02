@@ -10,8 +10,7 @@ import {Comment} from "../../model/comment";
 })
 export class CommentService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getCommentsFromPost(withId: Number): Observable<Comment[]> {
     const endpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', withId.toString(10))}`;
@@ -33,7 +32,7 @@ export class CommentService {
   }
 
   private createCommentOnPost(withValue: Comment) {
-    const endpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', withValue.post_id.toString())}`
+    const endpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', withValue.postId.toString())}`
     return this.http.post<Comment>(endpoint, withValue);
   }
 

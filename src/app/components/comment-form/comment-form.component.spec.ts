@@ -75,7 +75,6 @@ describe('CommentFormComponent', () => {
 
     fixture.detectChanges();
 
-    expect(cancelButton?.disabled).toBeFalsy();
     expect(submitButton?.disabled).toBeFalsy();
 
     submitButton?.click();
@@ -91,9 +90,6 @@ describe('CommentFormComponent', () => {
 
     expect(authorInput?.value).toEqual(mockFormValues.author);
     expect(commentInput.value).toEqual(mockFormValues.comment);
-
-    expect(cancelButton?.disabled).toBeFalsy();
-    expect(submitButton?.disabled).toBeFalsy();
 
     cancelButton?.click();
 

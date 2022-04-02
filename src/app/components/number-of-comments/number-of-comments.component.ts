@@ -23,14 +23,26 @@ export class NumberOfCommentsComponent implements OnInit {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   destroy$ = new Subject<boolean>();
 
-  constructor(private commentService: CommentService) {
-  }
+  constructor(private commentService: CommentService) {}
 
   get notLoading(): boolean {
     return !this.loading$.value;
   }
 
   ngOnInit(): void {
+    this.loadCommentsFromBlogPost();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  trackByComment(index: Number, comment: Comment): Number {
+    return comment.id || index;
+  }
+
+  protected loadCommentsFromBlogPost(): void {
     // I'm betting there is a better way to deal with this kind of things
     // I'll dig into it later. I'm not sure the Input complain about undefined
     // was something I had to handle in the past
@@ -51,15 +63,6 @@ export class NumberOfCommentsComponent implements OnInit {
       .subscribe((comments) => {
         this.comments$.next(comments);
       })
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
-  trackByComment(index: Number, comment: Comment): Number {
-    return comment.id || index;
   }
 
 }

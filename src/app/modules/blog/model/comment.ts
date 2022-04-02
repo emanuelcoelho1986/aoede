@@ -3,7 +3,7 @@ export interface Comment {
   id?: Number;
 
   // The post ID where the comment belongs to
-  post_id: Number;
+  postId: Number;
 
   // This might be a reply from a reply
   parent_id: Number | null;

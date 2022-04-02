@@ -26,6 +26,10 @@ export class CardCommentsComponent extends NumberOfCommentsComponent {
     )
   }
 
+  reloadComments(): void {
+    this.loadCommentsFromBlogPost();
+  }
+
   /**
    * Generate the comment tree
    * @param comments
@@ -46,7 +50,8 @@ export class CardCommentsComponent extends NumberOfCommentsComponent {
         const parentComment = commentsMap.get(comment.parent_id);
 
         if (parentComment) {
-          // I assume that all nodes have already a property children
+          // I assume that all nodes have already a property children based on the data structure I created
+          // from the API response
           parentComment.comments.push(comment);
         }
       } else {

@@ -55,7 +55,7 @@ describe('CommentService', () => {
     // Making sure we will create the real function and call the desired endpoint
     delete mockComment.id;
 
-    const expectedEndpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', (mockComment as Comment).post_id.toString())}`;
+    const expectedEndpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', (mockComment as Comment).postId.toString())}`;
 
     service.comment(mockComment)
       .subscribe({
