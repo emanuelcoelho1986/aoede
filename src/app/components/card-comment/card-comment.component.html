@@ -1,8 +1,8 @@
 <div class="comment-container">
-  <small>
+  <small data-test-author>
     <strong>{{comment?.user}} on the {{comment?.date}}</strong>
   </small>
-  <p [innerHTML]="comment?.content | safe"></p>
+  <p [innerHTML]="comment?.content | safe" data-test-comment></p>
 
   <div class="actions-container">
     <app-card-comment-actions (didPressReplyButton)="userDidPressReplyButton()"></app-card-comment-actions>
