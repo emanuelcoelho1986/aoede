@@ -102,6 +102,7 @@ jobs:
         with:
           build: make build
           start: make dev
+          browser: chrome
           record: true
           wait-on: "http://localhost:4200"
           wait-on-timeout: 120
