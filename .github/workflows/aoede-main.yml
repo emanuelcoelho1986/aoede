@@ -103,6 +103,19 @@ jobs:
         with:
           build: make build
           start: make dev
+      - name: Save Cypress Videos
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+      - name: Save Cypress Screenshts
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
 
   build_and_deploy:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
