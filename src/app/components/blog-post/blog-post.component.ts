@@ -6,6 +6,7 @@ import {IFormComment} from "../../models/IFormComment";
 import {Comment} from "../../modules/blog/model/comment";
 import {CommentFormComponent} from "../comment-form/comment-form.component";
 import {BlogPostService} from "../../services/blog-post.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog-post',
@@ -24,7 +25,8 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private route: ActivatedRoute,
-              private blogPostService: BlogPostService) {}
+              private blogPostService: BlogPostService,
+              private titleService: Title) {}
 
   ngOnInit(): void {
     // Lets use a forkJoin to handle 2 requests
@@ -33,6 +35,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         mergeMap(({blogPost}) => {
           this.blogPost$.next(blogPost);
+          this.titleService.setTitle(`Aeode - Post - ${blogPost.title}`)
           return this.blogPostService.loadComments(blogPost.id)
         }),
       )

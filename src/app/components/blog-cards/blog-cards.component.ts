@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {BehaviorSubject, Subject, takeUntil, tap} from "rxjs";
 import {Post} from "../../modules/blog/model/post";
 import {BlogPostsService} from "../../services/blog-posts.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog-cards',
@@ -16,9 +17,10 @@ export class BlogCardsComponent implements OnInit, OnDestroy {
   loading$ = new BehaviorSubject(false);
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private blogPostsService: BlogPostsService) {}
+  constructor(private blogPostsService: BlogPostsService, private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle('Aeode - Muse of voice and Song')
     this.loading$.next(true);
     this.blogPostsService.getBlogPosts()
       .pipe(

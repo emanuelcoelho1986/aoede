@@ -18,6 +18,7 @@ import {CardCommentActionsComponent} from './components/card-comment-actions/car
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TextFieldModule} from "@angular/cdk/text-field";
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {TextFieldModule} from "@angular/cdk/text-field";
     NumberOfCommentsComponent,
     CardCommentComponent,
     CardCommentActionsComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
