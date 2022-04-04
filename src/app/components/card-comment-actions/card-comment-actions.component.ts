@@ -7,4 +7,8 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class CardCommentActionsComponent {
   @Output() didPressReplyButton = new EventEmitter<boolean>();
+
+  didPressReply() {
+    this.didPressReplyButton.emit(true);
+  }
 }

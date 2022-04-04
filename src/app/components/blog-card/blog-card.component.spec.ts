@@ -6,6 +6,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {CardCommentsComponent} from "../card-comments/card-comments.component";
 import {NumberOfCommentsComponent} from "../number-of-comments/number-of-comments.component";
 import {BlogPostsMock} from "../../../../mocks/test/blog-posts.mock";
+import {CommentService} from "../../modules/blog/services/comment/comment.service";
 
 describe('BlogCardComponent', () => {
   let component: BlogCardComponent;
@@ -23,6 +24,9 @@ describe('BlogCardComponent', () => {
         CardCommentsComponent,
         NumberOfCommentsComponent,
         SafePipe
+      ],
+      providers: [
+        CommentService
       ]
     }).compileComponents();
   });

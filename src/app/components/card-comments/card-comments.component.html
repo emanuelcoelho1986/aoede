@@ -1,9 +1,9 @@
 <div class="comments-preview-container">
-  <ng-container [ngSwitch]="numberOfCommentsState | async">
+  <ng-container [ngSwitch]="numberOfCommentsState$ | async">
     <div *ngSwitchCase="commentsAmountStateEnum.NONE" class="comments-list-container"></div>
     <div *ngSwitchDefault class="number-of-comments">
       <ul>
-        <li *ngFor="let comment of (mappedComments$ | async); trackBy: trackByComment">
+        <li *ngFor="let comment of (mappedComments | async); trackBy: trackByCommentId">
           <app-card-comment [comment]="comment"></app-card-comment>
         </li>
       </ul>

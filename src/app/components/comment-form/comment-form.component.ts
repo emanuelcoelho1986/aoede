@@ -11,6 +11,9 @@ export class CommentFormComponent {
   @Input()
   shouldHideCancelButton: boolean = false;
 
+  @Input()
+  shouldHaveCancelButtonAlwaysActive: boolean = false;
+
   commentFormGroup = new FormGroup({
     author: new FormControl('', [
       Validators.required
@@ -31,9 +34,17 @@ export class CommentFormComponent {
   }
 
   get shouldDisableCancelButton(): boolean {
-    return Object.values(this.commentFormGroup.getRawValue() as IFormComment)
-      .reduce(value => value.toString().trim())
-      .length === 0 && !this.commentFormGroup.touched;
+    // Big override!
+    // Thinking on reusing component for replies. Cancel should do more than just clear the form
+    if(this.shouldHaveCancelButtonAlwaysActive) {
+      return false;
+    }
+
+    return Object.values(this.commentFormGroup.controls)
+      // Map to a single string
+      .map( formControl => formControl.value || '')
+      .reduce((currentValue, next) => currentValue + next, '')
+      .length === 0;
   }
 
   get authorFormControl(): AbstractControl | null {
