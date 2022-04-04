@@ -69,7 +69,6 @@ jobs:
     container: cypress/browsers:node16.13.0-chrome95-ff94
     needs: build
     if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -103,6 +102,19 @@ jobs:
         with:
           build: make build
           start: make dev
+          browser: chrome
+          record: true
+          wait-on: "http://localhost:4200"
+          wait-on-timeout: 120
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Save Cypress Videos
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
   build_and_deploy:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
