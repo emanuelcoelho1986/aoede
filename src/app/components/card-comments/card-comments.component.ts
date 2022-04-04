@@ -3,7 +3,7 @@ import {Comment} from "../../modules/blog/model/comment";
 import {CommentsAmountStateEnum} from "../../enums/comments-amount-state.enum";
 import {BehaviorSubject, Observable, Subject, takeUntil} from "rxjs";
 import {map} from "rxjs/operators";
-import {BlogPostService} from "../../services/blog-post.service";
+import {BlogPostService, sortByDate} from "../../services/blog-post.service";
 
 /**
  * I'm seeing this one being the following:
@@ -68,7 +68,7 @@ export class CardCommentsComponent {
         const parentComment = commentsMap.get(comment.parent_id);
 
         if (parentComment) {
-          // I assume that all nodes have already a property children based on the data structure I created
+          // I assume that all nodes have already a property comments based on the data structure I created
           // from the API response
           parentComment.comments.push(comment);
         }
@@ -77,6 +77,7 @@ export class CardCommentsComponent {
       }
     });
 
-    return commentsTree;
+    // return a branch of the tree sorted by new first
+    return commentsTree.sort(sortByDate);
   }
 }
