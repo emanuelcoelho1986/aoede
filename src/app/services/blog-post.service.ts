@@ -3,6 +3,23 @@ import {CommentService} from "../modules/blog/services/comment/comment.service";
 import {Comment} from "../modules/blog/model/comment";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 
+
+/**
+ * Sort by date function
+ * New first
+ * @param comment
+ * @param nextComment
+ */
+export function sortByDate(comment: Comment, nextComment: Comment): number {
+  const commentDate = new Date(comment.date as string);
+  const nextCommentDate = new Date(nextComment.date as string);
+
+  if (commentDate.getTime() < nextCommentDate.getTime()) return 1;
+  if (commentDate.getTime() > nextCommentDate.getTime()) return -1;
+
+  return 0;
+}
+
 @Injectable({
   providedIn: 'root'
 })
