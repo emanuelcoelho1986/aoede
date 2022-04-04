@@ -64,6 +64,13 @@ jobs:
       - name: Run Tests
         run: make test-unit
 
+      - name: Save Unit tests coverage
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+         name: unite-test-coverage
+         path: coverage/
+
   cypress-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node16.13.0-chrome95-ff94
