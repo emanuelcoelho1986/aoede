@@ -45,6 +45,9 @@ describe('Aeode - Comments', () => {
 
     cy.get('button[type="submit"]').click();
 
+    // Animation a load time
+    cy.wait(500);
+
     // Check if we have the desired comment
     cy.get('[data-test-author]').contains(formMockData.author).scrollIntoView().should('exist');
     cy.get('[data-test-comment]').contains(formMockData.comment).scrollIntoView().should('exist');
