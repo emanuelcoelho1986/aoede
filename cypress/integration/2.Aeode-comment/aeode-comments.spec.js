@@ -46,7 +46,7 @@ describe('Aeode - Comments', () => {
     cy.get('button[type="submit"]').click();
 
     // Check if we have the desired comment
-    cy.get('[data-test-author]').contains(formMockData.author).should('exist');
-    cy.get('[data-test-comment]').contains(formMockData.comment).should('exist');
+    cy.get('[data-test-author]').contains(formMockData.author).scrollIntoView().should('exist');
+    cy.get('[data-test-comment]').contains(formMockData.comment).scrollIntoView().should('exist');
   });
 })
