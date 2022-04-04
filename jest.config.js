@@ -1,6 +1,7 @@
 // jest.config.js
 module.exports = {
-    preset: 'jest-preset-angular',
-    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-    modulePathIgnorePatterns: ['<rootDir>/cypress'],
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/cypress'],
+  collectCoverage: true
 };
