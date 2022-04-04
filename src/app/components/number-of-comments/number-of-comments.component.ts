@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Post} from "../../modules/blog/model/post";
 import {BehaviorSubject, Subject, takeUntil, tap} from "rxjs";
 import {Comment} from "../../modules/blog/model/comment";
@@ -8,7 +8,8 @@ import {CommentsAmountStateEnum} from "../../enums/comments-amount-state.enum";
 @Component({
   selector: 'app-number-of-comments',
   templateUrl: './number-of-comments.component.html',
-  styleUrls: ['./number-of-comments.component.scss']
+  styleUrls: ['./number-of-comments.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberOfCommentsComponent implements OnInit {
 
@@ -42,7 +43,7 @@ export class NumberOfCommentsComponent implements OnInit {
     return comment.id || index;
   }
 
-  protected loadCommentsFromBlogPost(): void {
+  loadCommentsFromBlogPost(): void {
     // I'm betting there is a better way to deal with this kind of things
     // I'll dig into it later. I'm not sure the Input complain about undefined
     // was something I had to handle in the past
@@ -60,9 +61,7 @@ export class NumberOfCommentsComponent implements OnInit {
           }
         }),
       )
-      .subscribe((comments) => {
-        this.comments$.next(comments);
-      })
+      .subscribe((comments) => this.comments$.next(comments) );
   }
 
 }

@@ -4,6 +4,8 @@ import {CardCommentComponent} from './card-comment.component';
 import {SafePipe} from "../../pipes/safe.pipe";
 import {CardCommentActionsComponent} from "../card-comment-actions/card-comment-actions.component";
 import {BlogPostCommentsMock} from "../../../../mocks/test/blog-post-comments.mock";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {CommentService} from "../../modules/blog/services/comment/comment.service";
 
 describe('CardCommentComponent', () => {
   let component: CardCommentComponent;
@@ -11,10 +13,16 @@ describe('CardCommentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
       declarations: [
         SafePipe,
         CardCommentComponent,
         CardCommentActionsComponent
+      ],
+      providers: [
+        CommentService
       ]
     }).compileComponents();
   });

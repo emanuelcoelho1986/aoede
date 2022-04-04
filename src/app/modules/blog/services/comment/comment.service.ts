@@ -12,7 +12,9 @@ export class CommentService {
 
   constructor(private http: HttpClient) {}
 
-  getCommentsFromPost(withId: Number): Observable<Comment[]> {
+  getCommentsFromPost(withId: Number | undefined): Observable<Comment[]> {
+    if(withId === undefined) throw new Error('A Post ID is required to get the comments');
+
     const endpoint = `${environment.apiUrl}${ApiEndpoints.COMMENTS.replace('POST_ID', withId.toString(10))}`;
     return this.http.get<Comment[]>(endpoint);
   }

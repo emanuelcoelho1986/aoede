@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {NumberOfCommentsComponent} from "../number-of-comments/number-of-comments.component";
-import {Observable} from "rxjs";
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {Comment} from "../../modules/blog/model/comment";
+import {CommentsAmountStateEnum} from "../../enums/comments-amount-state.enum";
+import {BehaviorSubject, Observable, Subject, takeUntil} from "rxjs";
 import {map} from "rxjs/operators";
+import {BlogPostService} from "../../services/blog-post.service";
 
 /**
  * I'm seeing this one being the following:
@@ -15,19 +16,36 @@ import {map} from "rxjs/operators";
   selector: 'app-card-comments',
   templateUrl: './card-comments.component.html',
   styleUrls: ['./card-comments.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardCommentsComponent extends NumberOfCommentsComponent {
+export class CardCommentsComponent {
+  commentsAmountStateEnum = CommentsAmountStateEnum;
 
-  get mappedComments$(): Observable<Comment[]> {
-    return this.comments$.pipe(
+  constructor(private blogPostService: BlogPostService) { }
+
+  get mappedComments(): Observable<Comment[]> {
+    return this.blogPostService.comments$.pipe(
       // map and transform to Comment Tree
       map((comments) => this.createCommentTree(comments))
     )
   }
 
-  reloadComments(): void {
-    this.loadCommentsFromBlogPost();
+  get numberOfCommentsState$(): Observable<CommentsAmountStateEnum> {
+
+    return this.mappedComments.pipe(
+      map(comments => {
+        const numberOfComments = comments.length;
+
+        if(!numberOfComments) return CommentsAmountStateEnum.NONE;
+        if(numberOfComments === 1) return CommentsAmountStateEnum.SINGLE;
+
+        return CommentsAmountStateEnum.MULTIPLE;
+      })
+    )
+
+  }
+
+  trackByCommentId(index: number, comment: Comment): Number {
+    return comment.id || 0;
   }
 
   /**

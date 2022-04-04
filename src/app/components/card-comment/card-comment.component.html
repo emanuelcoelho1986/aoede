@@ -5,7 +5,11 @@
   <p [innerHTML]="comment?.content | safe"></p>
 
   <div class="actions-container">
-    <app-card-comment-actions></app-card-comment-actions>
+    <app-card-comment-actions (didPressReplyButton)="userDidPressReplyButton()"></app-card-comment-actions>
+    <app-comment-form *ngIf="showReplyForm$ | async"
+                      [shouldHaveCancelButtonAlwaysActive]="true"
+                      (onCancelForm)="userDidCancelReply()"
+                      (onSubmitForm)="userDidSubmitForm($event)"></app-comment-form>
   </div>
 
   <ul *ngIf="hasComments">
