@@ -136,7 +136,7 @@ jobs:
 
       - name: Get build from cache
         if: steps.cache-build.outputs.cache-hit != 'true'
-        run: make build
+        run: make build-prod
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
