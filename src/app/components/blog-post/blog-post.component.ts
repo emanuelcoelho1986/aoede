@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Post} from "../../modules/blog/model/post";
-import {BehaviorSubject, forkJoin, mergeMap, Observable, Subject, takeUntil, tap} from "rxjs";
+import {BehaviorSubject, mergeMap, Observable, Subject, takeUntil} from "rxjs";
 import {IFormComment} from "../../models/IFormComment";
 import {Comment} from "../../modules/blog/model/comment";
 import {CommentFormComponent} from "../comment-form/comment-form.component";
 import {BlogPostService} from "../../services/blog-post.service";
-import {Title} from "@angular/platform-browser";
+import {Meta, Title} from "@angular/platform-browser";
+import {LocationStrategy} from "@angular/common";
 
 @Component({
   selector: 'app-blog-post',
@@ -26,7 +27,9 @@ export class BlogPostComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private blogPostService: BlogPostService,
-              private titleService: Title) {}
+              private titleService: Title,
+              private metaTagService: Meta,
+              private locationStrategy: LocationStrategy) {}
 
   ngOnInit(): void {
     // Lets use a forkJoin to handle 2 requests
@@ -35,6 +38,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         mergeMap(({blogPost}) => {
           this.blogPost$.next(blogPost);
+          this.updateMetaTags(blogPost);
           this.titleService.setTitle(`Aeode - Post - ${blogPost.title}`)
           return this.blogPostService.loadComments(blogPost.id)
         }),
@@ -46,16 +50,13 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.removeMetaTags();
     this.destroy$.next(true);
     this.destroy$.complete();
   }
 
   get blogPostId(): Number | undefined {
     return this.blogPost$.value?.id;
-  }
-
-  get blogPostComments$(): BehaviorSubject<Comment[]> {
-    return this.blogPostService.comments$;
   }
 
   userDidSubmitForm(withData: IFormComment): void {
@@ -84,5 +85,32 @@ export class BlogPostComponent implements OnInit, OnDestroy {
           window.alert(`Unable to comment: ${JSON.stringify(err)}`)
         }
       });
+  }
+
+  private updateMetaTags(withData: Post): void {
+    this.metaTagService.addTags([
+      { name: 'author', content: withData.author.toString() },
+      { name: 'date', content: withData.publish_date.toString(), scheme: 'YYYY-MM-DD' },
+      { name: 'content', content: withData.content.toString() },
+      // OG Social
+      { name: 'og:title', content: withData.title.toString() },
+      { name: 'og:author', content: withData.author.toString() },
+      { name: 'og:date', content: withData.publish_date.toString() },
+      // p/:slug/:id
+      { name: 'og:url', content: `${location.origin}${this.locationStrategy.path()}`},
+      { name: 'og:site_name', content: 'Aoede' },
+      { name: 'og:type', content: 'text/html' },
+    ]);
+  }
+
+  private removeMetaTags() {
+    this.metaTagService.removeTag('author');
+    this.metaTagService.removeTag('date');
+    this.metaTagService.removeTag('og:title');
+    this.metaTagService.removeTag('og:author');
+    this.metaTagService.removeTag('og:date');
+    this.metaTagService.removeTag('og:url');
+    this.metaTagService.removeTag('og:site_name');
+    this.metaTagService.removeTag('og:type');
   }
 }

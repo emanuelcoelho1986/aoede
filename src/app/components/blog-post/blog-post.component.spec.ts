@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 import {BlogPostsMock} from "../../../../mocks/test/blog-posts.mock";
 import {CommentFormComponent} from "../comment-form/comment-form.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Meta} from "@angular/platform-browser";
+import {BrowserTestingModule} from "@angular/platform-browser/testing";
 
 describe('BlogPostComponent', () => {
   const blogPostMock = BlogPostsMock[0];
@@ -24,6 +26,7 @@ describe('BlogPostComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        BrowserTestingModule,
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
@@ -36,7 +39,8 @@ describe('BlogPostComponent', () => {
         CommentFormComponent
       ],
       providers: [
-        { provide: ActivatedRoute, useClass: stubRoute }
+        { provide: ActivatedRoute, useClass: stubRoute },
+        Meta
       ]
     }).compileComponents();
   });
@@ -63,6 +67,17 @@ describe('BlogPostComponent', () => {
     expect(componentElement).toBeDefined();
     expect(titleElement).toBeDefined();
     expect(titleElement?.textContent).toBe(blogPostMock.title.toString());
+  });
+
+  it('should have MetaTags', () => {
+    // Not all. Just as an example to check for tags
+    const metaTagsList = [
+      'author', 'date', 'content', 'og:author', 'og:title'
+    ];
+
+    expect(document.querySelectorAll('meta').length).toEqual(9);
+
+    metaTagsList.forEach(metaTagName => expect(document.querySelectorAll(`meta[name="${metaTagName}"]`)).toBeDefined());
   });
 
 });
