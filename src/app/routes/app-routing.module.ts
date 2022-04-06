@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
     */
   },
-  // Feels like reddit this way
+  // Feels more like reddit this way
   {
     path: 'p/:slug/:id',
     component: BlogPostComponent,
