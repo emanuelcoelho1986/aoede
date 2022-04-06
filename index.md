@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+*I've been updating Angular as regular as I can since I started the project. Currently, stands on `v13.3.0`*
+
+The application is available to check live at: [https://aoede-dev.web.app/](https://aoede-dev.web.app/)
+
 ## Intro
 
 ### Why Aoede name
@@ -29,6 +33,9 @@ She was the muse of voice and song. Since this is a blog(ish) demo, why not give
   - [The tech](#the-tech)
     - [Angular](#angular)
     - [Firebase](#firebase)
+    - [Docker](#docker)
+    - [Heroku](#heroku)
+    - [Github-Actions](#github-actions)
   - [Dev strategy](#dev-strategy)
   - [What would I do differently](#what-would-i-do-differently)
   - [If it was a real-world project](#if-it-was-a-real-world-project)
@@ -42,14 +49,13 @@ She was the muse of voice and song. Since this is a blog(ish) demo, why not give
   - [Further help](#further-help)
 
 ***
-
 ## Abstract
 
 The objective of this document is to describe the choices I made during the development of this small POC/Challenge. I'll start describing the motivation that made me do it, passing through the tech chosen. I'll end with some thanks and things I would do differently if this was a real-world project.
 
 ## Motivation
 
-This is a simple one. I miss Angular. I wanted to have a real objective by doing a small project/PoC/challenge that made me use the latest Angular Versions. I also like the BO field as well as the health industry. 
+This is a simple one. I miss Angular. I wanted to have a real objective by doing a small project/PoC/challenge that made me use the latest Angular Versions. I also like the BO field as well as the health industry.
 
 ## Objective
 The objective is also clear. It's described [here](https://github.com/LetsGetChecked/developer-challenge-api/) on your GitHub Project Page:
@@ -69,6 +75,18 @@ As you can check in my `package.json` file, I've used what is available when sca
 I choose Firebase because of two things I enjoy:
 The simplicity of setup and integration with GitHub
 The possibility of having a HOST for each PR be checked
+
+### Docker
+I created a Dockerfile just in case we want to deploy the image anywhere.
+
+### Heroku
+I took the liberty to Dockerize your API and hosted it in my free tier.
+
+**Let me know when the review is done so I can take it offline**
+
+### Github-Actions
+
+I'm using it to deal with the pipelines and some automation, especially with testing and pushing to Firebase.
 
 ## Dev strategy
 
@@ -105,12 +123,11 @@ In Review
 Done
 ## What would I do differently
 
-After checking the current project, I'll probably name some components differently. I'm looking at the 
+After checking the current project, I'll probably name some components differently. I'm looking at the
 
 ## If it was a real-world project
 
 I would use a different strategy to load posts, check for new posts, load comments and check for new comments. We might need a real-time push for these ones. Reloading the browser all the time to get the new stuff is super annoying. We could use some badge to tell us there are new posts and the comments could just appear as they are posts by someone else. TBH I never had to deal with real-time updates, but I guess it's more of finding the right tool than implementing it. Eg: Firebase already has a RealTime Tech ready to be used. Installing the client to keep it updated should do the trick (mostly). OFC I still have to read about it.
-
 ***
 # Local development
 ## Getting started
