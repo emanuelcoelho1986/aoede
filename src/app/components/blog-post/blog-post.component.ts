@@ -16,6 +16,8 @@ import {LocationStrategy} from "@angular/common";
 })
 export class BlogPostComponent implements OnInit, OnDestroy {
 
+  private metaTags: HTMLMetaElement[] = [];
+
   @ViewChild(CommentFormComponent)
   commentForm: CommentFormComponent | undefined;
 
@@ -88,7 +90,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   }
 
   private updateMetaTags(withData: Post): void {
-    this.metaTagService.addTags([
+    this.metaTags = this.metaTagService.addTags([
       { name: 'author', content: withData.author.toString() },
       { name: 'date', content: withData.publish_date.toString(), scheme: 'YYYY-MM-DD' },
       { name: 'content', content: withData.content.toString() },
@@ -104,13 +106,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   }
 
   private removeMetaTags() {
-    this.metaTagService.removeTag('author');
-    this.metaTagService.removeTag('date');
-    this.metaTagService.removeTag('og:title');
-    this.metaTagService.removeTag('og:author');
-    this.metaTagService.removeTag('og:date');
-    this.metaTagService.removeTag('og:url');
-    this.metaTagService.removeTag('og:site_name');
-    this.metaTagService.removeTag('og:type');
+    this.metaTags.forEach(tag => this.metaTagService.removeTagElement(tag));
+    this.metaTags = [];
   }
 }

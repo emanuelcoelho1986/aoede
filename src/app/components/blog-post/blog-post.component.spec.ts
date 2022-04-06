@@ -69,15 +69,4 @@ describe('BlogPostComponent', () => {
     expect(titleElement?.textContent).toBe(blogPostMock.title.toString());
   });
 
-  it('should have MetaTags', () => {
-    // Not all. Just as an example to check for tags
-    const metaTagsList = [
-      'author', 'date', 'content', 'og:author', 'og:title'
-    ];
-
-    expect(document.querySelectorAll('meta').length).toEqual(9);
-
-    metaTagsList.forEach(metaTagName => expect(document.querySelectorAll(`meta[name="${metaTagName}"]`)).toBeDefined());
-  });
-
 });
