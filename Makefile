@@ -1,4 +1,4 @@
-.PHONY: start-ui start-api install build dev run test-unit test-e2e test clean-api clean-ui clean
+.PHONY: start-ui start-api install build build-prod dev run test-unit test-e2e test clean-api clean-ui clean
 
 start-api:
 	cd api && npm run start &
@@ -15,6 +15,9 @@ dev: start-api start-ui
 
 build:
 	npm run build
+
+build-prod:
+	npm run build:prod
 
 run: dev
 
